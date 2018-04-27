@@ -1,5 +1,6 @@
 #!/bin/bash
 
+USER="$(id -nu)" # May be undefined when running through cron.
 selfdir="$(readlink -e "$(dirname "$0")")"
 datadir="$selfdir/data"
 rclone_config="$datadir/rclone_config"
