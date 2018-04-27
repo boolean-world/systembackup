@@ -51,7 +51,7 @@ release_mutex() {
 }
 
 get_remote_name() {
-	grep -qEom1 '^\[.*\]$' "$rclone_config" | tr -d '[]'
+	grep -Eom1 '^\[.*\]$' "$rclone_config" | tr -d '[]' 2>/dev/null
 }
 
 rclone() {
