@@ -1,7 +1,7 @@
 # systembackup
 
 A tool to back up systems, based on rclone. Backups are compressed as
-`.tar.xz` archives and encrypted with `gpg` before being uploaded to the
+`.tar.gz` archives and encrypted with `gpg` before being uploaded to the
 remote.
 
 # Usage
@@ -34,8 +34,8 @@ cd systembackup
 ./systembackup.sh decrypt {Backup File}
 ```
 
-The result will be a `.tar.xz` file, which you can extract or view with the
-`tar` command (you may need to use the `-J` flag.)
+The result will be a `.tar.gz` file, which you can extract or view with the
+`tar` command (you may need to use the `-z` flag.)
 
 # License
 

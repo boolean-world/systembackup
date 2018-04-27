@@ -82,8 +82,8 @@ init_tmpdir() {
 install_base_dependencies() {
 	local i
 	local install_pkgs=()
-	local deps=(unzip tar xz wget gpg)
-	local pkgs=(unzip tar xz wget gnupg)
+	local deps=(unzip tar gzip wget gpg)
+	local pkgs=(unzip tar gzip wget gnupg)
 
 	for ((i = 0; i < ${#deps[@]}; i++)); do
 		if ! which "${deps[$i]}" > /dev/null; then
@@ -283,7 +283,7 @@ run_backup() {
 
 	echo 'Compressing and encrypting data...'
 	cd "$tmpdir"
-	eval "tar --ignore-failed-read -cJf - command_results ${backup_paths[*]} | gpg -c --cipher-algo AES256 --batch --passphrase-fd 1 --passphrase-file $passphrase_file -o $backup_archive"
+	eval "tar --ignore-failed-read -czf - command_results ${backup_paths[*]} | gpg -c --cipher-algo AES256 --batch --passphrase-fd 1 --passphrase-file $passphrase_file -o $backup_archive"
 
 	echo 'Initializing remote...'
 	rclone mkdir "$remote_name:$system_name"
@@ -317,7 +317,7 @@ run_extract() {
 	if [[ ! -z $2 ]]; then
 		output="$2"
 	else
-		output="${1%.*}.tar.xz"
+		output="${1%.*}.tar.gz"
 		if [[ -e $output ]]; then
 			die "Output already exists, please provide a name manually."
 		fi
