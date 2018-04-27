@@ -1,0 +1,6 @@
+/data
+/.vagrant
+*.log
+*.DS_Store
+*.gpg
+*.tar.xz
