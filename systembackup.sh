@@ -215,6 +215,8 @@ run_setup() {
 	install_base_dependencies
 	install_rclone
 
+	mkdir -p "$datadir"
+
 	local write_config='y'
 	if [[ -e $backup_config ]]; then
 		read -n1 -p 'An existing configuration exists. Overwrite? [y/N] ' write_config
