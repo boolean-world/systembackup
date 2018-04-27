@@ -283,7 +283,7 @@ run_backup() {
 
 	echo 'Compressing and encrypting data...'
 	cd "$tmpdir"
-	eval "tar --ignore-failed-read -czf - command_results ${backup_paths[*]} | gpg -c --cipher-algo AES256 --batch --passphrase-fd 1 --passphrase-file $passphrase_file -o $backup_archive"
+	eval "tar --ignore-failed-read -czf - command_results ${backup_paths[*]} | gpg -c --cipher-algo AES256 --compress-algo none --batch --passphrase-fd 1 --passphrase-file $passphrase_file -o $backup_archive"
 
 	echo 'Initializing remote...'
 	rclone mkdir "$remote_name:$system_name"
