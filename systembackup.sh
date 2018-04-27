@@ -51,7 +51,7 @@ release_mutex() {
 }
 
 get_remote_name() {
-	grep -Eom1 '^\[.*\]$' "$rclone_config" | tr -d '[]'
+	grep -qEom1 '^\[.*\]$' "$rclone_config" | tr -d '[]'
 }
 
 rclone() {
@@ -277,7 +277,7 @@ run_backup() {
 
 	echo 'Saving command results...'
 	for name in "${!backup_commands[@]}"; do
-		eval "${backup_commands[$name]}" > "$commands_dir/$name"
+		eval "${backup_commands[$name]}" > "$commands_dir/$name.txt"
 	done
 
 	echo 'Compressing and encrypting data...'
