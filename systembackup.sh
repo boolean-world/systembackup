@@ -120,8 +120,8 @@ install_rclone() {
 				;;
 		esac
 
-		local url="$(wget -qO - https://github.com/ncw/rclone/releases | sed -nr \
-			"s! *<a href=\"(/ncw/rclone/releases/download/v.*/rclone-v.*-linux-$arch.zip)\".*!https://github.com\1!gp" | head -n1)"
+		local url="$(wget -qO - https://github.com/rclone/rclone/releases | sed -nr \
+			"s! *<a href=\"(/rclone/rclone/releases/download/v.*/rclone-v.*-linux-$arch.zip)\".*!https://github.com\1!gp" | head -n1)"
 		if [[ -z $url ]]; then
 			die 'Unable to find rclone binary URL from releases page.'
 		else
